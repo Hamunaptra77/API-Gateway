@@ -1,0 +1,169 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "deine-domain.de API Gateway",
+    "version": "1.0.0",
+    "description": "OpenAPI description für das API Gateway von deine-domain.de. Der Gateway definiert Weiterleitungen zu Terminal-, Memory-, Vector-, Filesystem- und Summarizer-Services."
+  },
+  "servers": [
+    {
+      "url": "https://deine-domain.de",
+      "description": "Produktions-Gateway"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Gateway Health Check",
+        "responses": {
+          "200": {
+            "description": "Gateway ist verfügbar",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-info": {
+      "get": {
+        "summary": "Gateway Metadaten",
+        "responses": {
+          "200": {
+            "description": "Informationen zu Gateway und verfügbaren Diensten",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/terminals/": {
+      "get": {
+        "summary": "Terminal-Service Proxy Root",
+        "description": "Leitet auf den Open Terminal-API-Service weiter.",
+        "responses": {
+          "default": {
+            "description": "Proxied response from terminal service"
+          }
+        }
+      }
+    },
+    "/api/terminals/{proxy}": {
+      "parameters": [
+        {
+          "name": "proxy",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Beliebiger Pfad im Terminal-Service"
+        }
+      ],
+      "get": {
+        "summary": "Proxy GET to Terminal Service",
+        "responses": {
+          "default": {
+            "description": "Proxied response from terminal service"
+          }
+        }
+      },
+      "post": {
+        "summary": "Proxy POST to Terminal Service",
+        "responses": {
+          "default": {
+            "description": "Proxied response from terminal service"
+          }
+        }
+      }
+    },
+    "/api/memory/{proxy}": {
+      "parameters": [
+        {
+          "name": "proxy",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Beliebiger Pfad im Memory-Service"
+        }
+      ],
+      "get": {
+        "summary": "Proxy GET to Memory Service",
+        "responses": {"default": {"description": "Proxied response from memory service"}}
+      },
+      "post": {
+        "summary": "Proxy POST to Memory Service",
+        "responses": {"default": {"description": "Proxied response from memory service"}}
+      }
+    },
+    "/api/vector/{proxy}": {
+      "parameters": [
+        {
+          "name": "proxy",
+          "in": "path",
+          "required": true,
+          "schema": {"type": "string"},
+          "description": "Beliebiger Pfad im Vector Memory-Service"
+        }
+      ],
+      "get": {
+        "summary": "Proxy GET to Vector Memory Service",
+        "responses": {"default": {"description": "Proxied response from vector memory service"}}
+      },
+      "post": {
+        "summary": "Proxy POST to Vector Memory Service",
+        "responses": {"default": {"description": "Proxied response from vector memory service"}}
+      }
+    },
+    "/api/filesystem/{proxy}": {
+      "parameters": [
+        {
+          "name": "proxy",
+          "in": "path",
+          "required": true,
+          "schema": {"type": "string"},
+          "description": "Beliebiger Pfad im Filesystem-Service"
+        }
+      ],
+      "get": {
+        "summary": "Proxy GET to Filesystem Service",
+        "responses": {"default": {"description": "Proxied response from filesystem service"}}
+      },
+      "post": {
+        "summary": "Proxy POST to Filesystem Service",
+        "responses": {"default": {"description": "Proxied response from filesystem service"}}
+      }
+    },
+    "/api/summarizer/{proxy}": {
+      "parameters": [
+        {
+          "name": "proxy",
+          "in": "path",
+          "required": true,
+          "schema": {"type": "string"},
+          "description": "Beliebiger Pfad im Summarizer-Service"
+        }
+      ],
+      "get": {
+        "summary": "Proxy GET to Summarizer Service",
+        "responses": {"default": {"description": "Proxied response from summarizer service"}}
+      },
+      "post": {
+        "summary": "Proxy POST to Summarizer Service",
+        "responses": {"default": {"description": "Proxied response from summarizer service"}}
+      }
+    }
+  }
+}
+

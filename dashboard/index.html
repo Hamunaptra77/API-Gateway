@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Gateway Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header>
+            <div>
+                <h1>API Gateway Dashboard</h1>
+                <p>Überwache Gateway-Status, Service-Health und API-Routing in einem zentralen UI.</p>
+            </div>
+            <button id="refreshButton">Aktualisieren</button>
+        </header>
+
+        <section class="card" id="api-key-card">
+            <h2>API-Key</h2>
+            <div class="status-row">
+                <span>Key:</span>
+                <input id="apiKeyInput" type="password" placeholder="API-Key eingeben" autocomplete="off" />
+            </div>
+            <div class="status-row">
+                <button id="saveApiKeyButton">Speichern</button>
+                <span id="apiKeyMessage"></span>
+            </div>
+        </section>
+
+        <section class="card" id="gateway-card">
+            <h2>Gateway Status</h2>
+            <div class="status-row">
+                <span>Status:</span>
+                <strong id="gatewayStatus">Lade...</strong>
+            </div>
+            <div class="status-row">
+                <span>Endpoint:</span>
+                <code id="gatewayUrl">/health</code>
+            </div>
+            <div class="status-row">
+                <span>Info:</span>
+                <code id="gatewayInfo">-</code>
+            </div>
+        </section>
+
+        <section class="grid" id="services"></section>
+
+        <section class="card" id="api-info-card">
+            <h2>Gateway Info</h2>
+            <pre id="apiInfo">Lade...</pre>
+        </section>
+
+        <section class="card" id="functions-card">
+            <h2>Gateway Funktionen</h2>
+            <div id="functions">Lade...</div>
+        </section>
+
+        <footer>
+            <small>Dashboard-Erweiterung für API Gateway</small>
+        </footer>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>

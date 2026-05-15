@@ -1,0 +1,33 @@
+version: '3.8'
+
+# This is an optional extension to docker-compose.yml for automatic certificate renewal
+# Add this to docker-compose.yml by uncommenting or use: docker-compose -f docker-compose.yml -f docker-compose.certbot.yml up -d
+
+services:
+  # Optional: Automatic Let's Encrypt renewal service
+  certbot-renewal:
+    image: certbot/certbot
+    container_name: certbot-renewal
+    volumes:
+      - ./api-gateway/ssl:/etc/letsencrypt
+      - ./api-gateway/certbot:/var/www/certbot
+    environment:
+      - CERTBOT_EMAIL=admin@deine-domain.de
+    entrypoint: >
+      sh -c "
+      trap exit TERM;
+      while :; do
+        certbot renew --non-interactive --quiet --webroot --webroot-path=/var/www/certbot;
+        sleep 86400 &
+        wait $${!}
+      done
+      "
+    restart: unless-stopped
+    networks:
+      - ai-net
+    depends_on:
+      - api-gateway
+
+networks:
+  ai-net:
+    external: true

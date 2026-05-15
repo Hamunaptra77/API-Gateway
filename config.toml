@@ -1,0 +1,13 @@
+# API Gateway configuration
+# Settings can be overridden via environment variables:
+# API_KEY, GATEWAY_API_KEY, DOMAIN, API_GATEWAY_CONFIG_FILE
+
+# The public domain name used for redirects and OpenAPI server metadata.
+domain = "deine-domain.de"
+
+# API key used to protect the gateway endpoints.
+api_key = "X1-8CAl9ZOTZjHzNDg-OXGfjwZCjGWrxjMumSI3dcPZ2lbIZUPpdB2zNjjtramKW"
+
+# Rate limiting configuration: maximum requests per client per window.
+rate_limit = 60
+rate_limit_window = 60
